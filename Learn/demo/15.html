@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="700" height="500"></canvas>
+</body>
+<script>
+
+let canvas = document.getElementById("mycanvas")
+    let context = canvas.getContext('2d')
+
+let rect = {
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 100,
+  color: 'red'
+}
+let circle = {
+  x: canvas.width / 2,
+  y: canvas.height / 2,
+  r: 50,
+  color: 'green'
+
+}
+let startX = 0, endX = canvas.width - 100;
+let nowX = startX;
+let speed = 3;
+let timer =  setInterval(()=>{
+  nowX += speed;
+  if (nowX >= endX) {
+    nowX = endX
+    clearInterval( timer)
+  }
+  rect.x = nowX
+  // 确定位子开始绘制
+  drawRect(rect)
+// },1000 /24)
+}, 16)
+// 这个1000 /24 就相当于 1s里变化24次，为国产动画的帧率
+
+function drawRect (r) {
+  // context.clearRect(x, y, width, height);
+  // 清除画布
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  // 再绘制图形
+  context.beginPath();
+  context.rect(r.x , r.y ,r.width , r.height)
+  context.fillStyle=r.color;
+  context.fill();
+  // 绘制的圆位子不变
+  context.beginPath()
+  context.arc(circle.x, circle.y, circle.r, 0, Math.PI * 2 , false);
+
+  context.fillStyle = circle.color
+  context.fill();
+  
+  
+  
+}
+
+
+
+
+
+
+
+
+
+
+   
+    </script>
+</html>

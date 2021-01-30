@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <canvas width="1500" height="680" id="myCanvas">
+    当前浏览器不支持canvas</canvas>
+</body>
+<script src="digit.js"></script>
+<script>
+
+  window.onload = function () {
+    // var tangram= [
+    //   {p:[{x:0,y:0},{x:800,y:0},{x:400,y:400}],color:"#caff67"},
+    //   {p:[{x:0,y:0},{x:400,y:400},{x:0,y:800}],color:"#67becf"},
+    //   {p:[{x:800,y:0},{x:800,y:400},{x:600,y:600},{x:600,y:200}],color:"#ef3d61"},
+    //   {p:[{x:600,y:200},{x:600,y:600},{x:400,y:800},{x:200,y:600}],color:"#a594c0"},
+    //   {p:[{x:200,y:600},{x:400,y:800},{x:0,y:800}],color:"#fa8ecc"},
+    //   {p:[{x:800,y:400},{x:800,y:800},{x:400,y:800}],color:"#f6ca29"},
+    // ]
+    var canvas = document.getElementById("myCanvas")
+    var context = canvas.getContext('2d')
+    var ballList = []
+    var lastTime = ''
+    const endTime = new Date(2021, 0, 30, 18, 47, 25)
+    setInterval(function () {
+      context.clearRect(0, 0, 1500, 768)
+      renderTime()
+    }, 20)
+    renderTime()
+    function renderTime() {
+      const now = Date.now()
+
+      var difs = (endTime - now) / 1000
+      //  2021年1月30号
+      var h = parseInt(difs / 3600)
+      var m = parseInt((difs - h * 3600) / 60)
+      var s = parseInt(difs - h * 3600 - m * 60)
+      if (h < 10) {
+        h = '0' + h
+      } else if (m < 10) {
+        m = '0' + m
+      }
+
+      else if (s < 10) {
+        s = '0' + s
+      }
+
+      h = String(h)
+      m = String(m)
+      s = String(s)
+      // var ball = {x:512,y:100,r:20,g:2,vx:-4,vy:0,color:"#005588"}
+      let timeLen = h + ':' + m + ':' + s
+
+
+      //  console.log(timeLen.length)
+      for (var i = 0; i < timeLen.length; i++) {
+        if (timeLen[i] === ':') {
+
+          renderDigit(10, i, 150, 35)
+        } else {
+          renderDigit(timeLen[i], i, 150)
+        }
+
+      }
+      if (lastTime != timeLen) {
+        for (var t = 0; t < timeLen.length; t++) {
+          if (lastTime[t] != timeLen[t]) {
+            if(timeLen[t] === ':') {
+          
+            }else {
+              for(var i=0;i<digit[timeLen[t]].length;i++){
+                // console.log(digit[timeLen[t]][i])
+                for (var j = 0; j < digit[timeLen[t]][i].length; j++) {
+    
+                      if (digit[timeLen[t]][i][j] == 1) {
+                        // console.log(1)
+                        ballList.push({x: 20* (j + 1) + 2 * 150,y:(i + 1) * 20,r:10,g:2,vx:4* Math.random()*Math.pow(-1,i),vy:-20 * Math.random(),color:randomColor(),index:t})
+                }
+
+                }
+             }
+            }
+           
+          }
+        }
+      }
+      lastTime = timeLen
+      let newList = []
+ 
+      for (var k = 0; k < ballList.length; k++) {
+        if(Math.abs(ballList[k].x) <1500) {
+          newList.push(ballList[k])
+            // ballList[k]=null
+        }
+      }
+      for(var o=0;o<newList.length;o++){
+        update(newList[o])
+      }
+      ballList= newList
+      // console.log(ballList.length)
+
+    }
+    function randomColor() {
+      var color = '#'
+      for (var i = 0; i < 6; i++) {
+        color += parseInt(Math.random() * 16).toString(16)
+      }
+      return color
+    }
+
+    function update(ball) {
+
+      ball.x += ball.vx
+      ball.y += ball.vy
+      ball.vy += ball.g
+      if (ball.y > (canvas.height - ball.r)) {
+        ball.y = canvas.height - ball.r
+        ball.vy = -ball.vy * 0.5
+      }
+      context.beginPath()
+      context.arc(ball.x + 100 * ball.index, ball.y, ball.r, 0, 2 * Math.PI)
+      context.closePath()
+      context.fillStyle = ball.color
+      context.fill()
+
+
+
+    }
+
+    function renderDigit(index, position, distance, r = 20) {
+
+      for (var i = 0; i < digit[index].length; i++) {
+        for (var j = 0; j < digit[index][i].length; j++) {
+
+          context.beginPath()
+          context.arc(r * (j + 1) + distance * position, (i + 1) * 20, 10, 0, 2 * Math.PI)
+          // context.stroke()
+
+          if (digit[index][i][j] == 1) {
+            context.fillStyle = "#8600ef"
+            context.fill()
+          }
+
+        }
+
+      }
+
+    }
+
+    // for(var i=0;i<11;i++){
+    //   context.beginPath()
+    //   context.arc( 50*( i+1 ),80,20,0,(0.2* i)*Math.PI,true)
+    //   context.stroke()
+    //   context.fillStyle="#00f0f0"
+    //   context.fill()
+    //   context.closePath()
+    // }
+
+    // context.end()
+
+
+  }
+
+</script>
+
+</html>

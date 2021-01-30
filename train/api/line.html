@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="cv" width="500" height="500"></canvas>
+</body>
+<script src="../../jquery.js"></script>
+<script>
+  $(function(){
+    let canvas = $("#cv")
+    let context = canvas.get(0).getContext('2d')
+    context.beginPath()
+    context.moveTo(40,40)
+    context.lineTo(50,90)
+    context.lineTo(160,160)
+    context.lineTo(30,11)
+    context.lineTo(1,1)
+    context.closePath()
+    context.stroke()
+  })
+</script>
+</html>

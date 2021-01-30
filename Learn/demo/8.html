@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+let canvas = document.getElementById("mycanvas")
+let context = canvas.getContext('2d')
+context.beginPath();
+context.rect(10, 10, 300, 100);
+// context.fillStyle='blue';
+// 使用rgba局部透明
+context.fillStyle='rgba(255,0,0,0.5)';
+context.lineWidth=8;
+context.strokeStyle='red';
+// context.globalAlpha=0.5;
+// context.globalAlpha为全局的透明度;
+
+context.fill()
+context.stroke()
+// 第二个的路径不被上一个globalAlpha影响,所以这个fill前可以把globalAlpha变成1
+context.beginPath();
+context.arc(500, 300, 100, 0, Math.PI * 2)
+context.fillStyle = 'red'
+
+context.globalAlpha=1;
+
+context.fill()
+
+
+
+
+
+
+
+</script>
+</html>

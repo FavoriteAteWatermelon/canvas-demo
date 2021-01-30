@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+</style>
+<body>
+<canvas id="canvas"></canvas>  
+</body>
+<script src="./index.js"></script>
+<script src="./arrow.js"></script>
+<script>
+  const canvas = document.getElementById("canvas")
+  const ctx = canvas.getContext('2d')
+  
+  let W = canvas.width = 800
+  let H = canvas.height = 600
+  let mouse = C.getOffset(canvas)
+  const arrow = new Arrow({
+    x: W / 2,
+    y: H / 2,
+    w: 180,
+    h: 60
+  }).render(ctx)
+  canvas.onmousemove = function () {
+    let dx = mouse.x - arrow.x
+    let dy = mouse.y - arrow.y
+    
+    arrow.rotation = Math.atan2(dy, dx)
+    ctx.clearRect(0, 0, W, H)
+    arrow.render(ctx)
+    
+  }
+
+</script>
+</html>

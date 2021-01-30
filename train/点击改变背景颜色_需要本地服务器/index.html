@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img onload="loadImg()" style="display: none;" class="myimg" src="./timg.jpg" alt="">
+    <canvas id="my" width="600" height="800">  </canvas>
+    
+</body>
+<script>
+ let canvas = document.getElementById('my')
+ let img = document.getElementsByClassName('myimg')[0]
+ let context = canvas.getContext('2d');
+ function loadImg() {
+    context.drawImage(img, 0,0);
+ }
+canvas.onclick=function(e) {
+    // console.log(canvas)
+    let canvasX = Math.floor(e.pageX - canvas.offsetLeft)
+    let canvasY = Math.floor(e.pageY - canvas.offsetTop)
+   
+    let imageData = context.getImageData(canvasX,canvasY,50,50)
+    let pixel = imageData.data
+    // console.log(pixel)
+    let pixelColor = "rgba("+pixel[0]+","+pixel[1]+","+pixel[2]+","+pixel[3]+")"
+    document.getElementsByTagName('body')[0].style.background = pixelColor
+}
+ 
+</script>
+</html>

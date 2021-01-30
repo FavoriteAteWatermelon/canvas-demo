@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button onclick="exportCanvasAsPNG('myCanvas','nianling')">保存</button>
+  <img width="200px" height="200px" id="tulip" src="./user1.jpg" alt="">
+  <canvas id="myCanvas" width="500" height="300">
+   
+  </canvas>
+</body>
+<script>
+  window.onload= function() {
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var img=document.getElementById("tulip");
+    ctx.drawImage(img,10,10);
+        }
+        function exportCanvasAsPNG(id, fileName) {
+
+var canvasElement = document.getElementById(id);
+
+var MIME_TYPE = "image/png";
+
+var imgURL = canvasElement.toDataURL(MIME_TYPE);
+
+var dlLink = document.createElement('a');
+dlLink.download = fileName;
+dlLink.href = imgURL;
+dlLink.dataset.downloadurl = [MIME_TYPE, dlLink.download, dlLink.href].join(':');
+
+document.body.appendChild(dlLink);
+dlLink.click();
+document.body.removeChild(dlLink);
+}
+
+</script>
+</html>

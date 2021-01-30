@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+
+let canvas = document.getElementById("mycanvas")
+    let context = canvas.getContext('2d')
+    // console.log(content)
+  context.moveTo(400, 10);
+  context.lineTo(600, 300);
+  context.lineTo(100, 200);
+  context.closePath()
+  context.lineWidth = 5
+  // 1.先描边再填充 有一半的边会被覆盖
+  context.strokeStyle='red';
+  context.stroke();
+  context.fillStyle = "green"
+  context.fill()
+// 2.先填充再描边 会显示全部宽度的边
+  // context.strokeStyle='red';
+ 
+  // context.fillStyle = "green"
+  // context.fill()
+  // context.stroke();
+   
+    </script>
+</html>

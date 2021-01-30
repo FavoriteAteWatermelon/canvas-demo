@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+
+let canvas = document.getElementById("mycanvas")
+    let context = canvas.getContext('2d')
+
+// context.beginPath();
+
+// context.lineJoin='round';
+// context.lineJoin='bevel';
+context.lineJoin='miter';
+context.lineWidth=0.2;
+
+
+let startP = {
+  x: 20,
+  y: 20
+}
+let p1 = {
+  x: 300,
+  y: 100
+}
+let endP = {
+  x: 30,
+  y: 200
+}
+moveP = {
+  x: 20,
+  y: 20
+}
+context.moveTo(20,20)
+loop()
+function loop () {
+  window.requestAnimationFrame(()=> {
+    if (moveP.x < 600) {
+    moveP.x += 3
+    moveP.y += 3
+    context.lineTo(moveP.x , moveP.y);
+    context.strokeStyle='red';
+    
+    context.stroke();
+    loop()
+  }
+  })
+
+}
+// setInterval(()=> {
+
+//   // console.log(22)
+//   // context.beginPath()
+//   if (moveP.x < 100){
+   
+//     moveP.x += 10
+//     moveP.y += 3
+//     // console.log(moveP)
+
+//   }else if(moveP.x < 200) {
+//     moveP.x +=5
+//     moveP.y += 5
+//   } else if (moveP.x < 300) {
+//     moveP.x +=7
+//     moveP.y += 3
+//   } else {
+//     moveP.x +=2
+//     moveP.y +=4
+//   }
+//   context.lineTo(moveP.x , moveP.y);
+//     context.stroke();
+    
+  
+ 
+  
+// },20)
+
+
+
+
+
+
+
+
+
+
+
+   
+    </script>
+</html>

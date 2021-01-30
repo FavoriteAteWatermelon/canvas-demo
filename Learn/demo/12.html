@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+
+let canvas = document.getElementById("mycanvas")
+    let context = canvas.getContext('2d')
+
+let origin = {
+  x: canvas.width / 2,
+  y: canvas.height / 2
+}
+context.translate(100, 100);
+
+context.rotate(- 30 * Math.PI / 180);
+
+context.beginPath();
+context.rect(0, 0, 200, 400);
+
+context.fillStyle='green';
+context.fill()
+// context.beginPath();
+// context.moveTo(20,20)
+// context.lineTo(300, 300);
+// context.lineWidth=20;
+// context.strokeStyle='red';
+// // context.lineCap='butt';
+// // context.lineCap='round';
+// context.lineCap='square';
+
+// context.stroke();
+
+
+
+
+
+
+   
+    </script>
+</html>

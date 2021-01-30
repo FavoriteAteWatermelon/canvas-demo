@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+
+let canvas = document.getElementById("mycanvas")
+    let context = canvas.getContext('2d')
+let p1 = {
+  x: 100,
+  y: 100,
+  color: 'red',
+  r: 10
+}
+let p2 = {
+  x: 500,
+  y: 100,
+  color: 'red',
+  r: 10
+}
+
+context.beginPath();
+context.arc(p1.x,p1.y, p1.r, 0, Math.PI * 2, false);
+context.fillStyle= p1.color;
+context.fill();
+
+context.beginPath();
+context.arc(p2.x,p2.y, p2.r, 0, Math.PI * 2, false);
+context.fillStyle= p2.color;
+context.fill();
+
+console.log(getDistance(p1,p2))
+
+function getDistance (obj1,obj2) {
+  return Math.sqrt((obj1.x - obj2.x) * (obj1.x - obj2.x) + (obj1.y - obj2.y)* (obj1.y - obj2.y))
+}
+
+
+
+
+
+
+
+
+
+
+
+   
+    </script>
+</html>

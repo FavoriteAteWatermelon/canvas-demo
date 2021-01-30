@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
+</style>
+<body>
+<canvas id="canvas"></canvas>  
+</body>
+<script src="./index.js"></script>
+<script>
+  const canvas = document.getElementById("canvas")
+  const ctx = canvas.getContext('2d')
+  let W = canvas.width = 800
+  let H = canvas.height = 600
+  let mouse = C.getOffset(canvas)
+  canvas.onmousemove = function () {
+    ctx.clearRect(0, 0, W, H)
+    drawAxis()
+
+    drawConnctLine()
+    drawShowAngle()
+  }
+// 画角度,相对于中心点定位所以需要减去中心点的位置
+// 首先我们得要角度， 是用边长之比，但是在计算机中得出来的值是弧度值，需要再转化成角度
+drawShowAngle = () => {
+  let dx = mouse.x - W / 2
+  let dy = mouse.y - H / 2
+  // let angle = Math.atan(dy / dx) * 180 / Math.PI
+  // atan2修正
+  let angle = Math.atan2(dy , dx) * 180 / Math.PI
+  ctx.beginPath()
+  ctx.fillText(angle, mouse.x, mouse.y)
+  ctx.stroke()
+}
+// 画连接线
+drawConnctLine = () => {
+  ctx.beginPath()
+    ctx.lineTo(mouse.x, mouse.y)
+    ctx.lineTo(W / 2, H / 2)
+    ctx.stroke()
+}
+  // 画数轴
+drawAxis = () => {
+  ctx.save()
+  ctx.lineWidth= 2;
+  // 画x轴线
+  ctx.beginPath ()
+  ctx.moveTo(0, H / 2)
+  ctx.lineTo(W, H / 2)
+  ctx.stroke()
+  // 画Y轴线
+  ctx.beginPath ()
+  ctx.moveTo(W / 2, 0)
+  ctx.lineTo(W / 2, H )
+  ctx.stroke()
+  
+}
+
+</script>
+</html>

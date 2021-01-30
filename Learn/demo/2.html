@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+
+let canvas = document.getElementById("mycanvas")
+    let context = canvas.getContext('2d')
+    // console.log(content)
+  // context.moveTo(10, 10);
+  // context.lineTo(300, 10);
+  // context.lineTo(300, 200);
+  // context.lineTo(10, 200) 
+  // context.lineTo(10, 10)
+  // 以上等价于
+  context.rect(10,10,300,190) 
+  context.strokeStyle='red';
+  context.stroke();
+   
+    </script>
+</html>

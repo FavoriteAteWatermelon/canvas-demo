@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+let canvas = document.getElementById("mycanvas")
+let context = canvas.getContext('2d')
+let width = canvas.width
+let height = canvas.height
+let origin = {
+  x : width / 2 ,
+  y: height / 2
+}
+let face_radius = 100
+context.beginPath();
+// context.moveTo(origin.x, origin.y)
+context.arc(origin.x, origin.y, face_radius, 0, Math.PI * 2);
+context.strokeStyle='black';
+context.stroke();
+let leftEye = {x : 0, y: 0}
+let dist= face_radius * 2 / 3
+leftEye.x = origin.x -dist / 2
+leftEye.y = origin.y - 30
+//左眉毛
+context.beginPath()
+context.arc(
+  leftEye.x,
+  leftEye.y,
+  20,
+  0,
+  -Math.PI,
+  true
+)
+context.strokeStyle= 'red'
+context.lineWidth=8;
+
+context.stroke();
+// 左眼
+context.beginPath()
+context.arc(
+  leftEye.x,
+  leftEye.y,
+  10,
+  0,
+  2 * Math.PI,
+  true
+)
+context.strokeStyle= 'black'
+context.lineWidth=2;
+
+context.stroke();
+// 右眉毛
+
+let rightEye = {x : 0, y: 0}
+rightEye.x = origin.x + dist / 2
+rightEye.y = origin.y - 30
+
+context.beginPath()
+context.arc(
+  rightEye.x,
+  rightEye.y,
+  20,
+  0,
+  -Math.PI,
+  true
+)
+context.strokeStyle= 'red'
+context.lineWidth=8;
+
+context.stroke();
+// 右眼
+context.beginPath()
+context.arc(
+  rightEye.x,
+  rightEye.y,
+  10,
+  0,
+  2 * Math.PI,
+  true
+)
+context.strokeStyle= 'black'
+context.lineWidth=2;
+
+context.stroke();
+// mouth
+let mouth = {
+  x : origin.x,
+  y: origin.y + 30
+}
+context.beginPath()
+context.arc(
+  mouth.x,
+  mouth.y,
+  50,
+  0,
+  Math.PI,
+  false
+)
+context.strokeStyle = 'blue'
+context.lineWidth = 3
+context.stroke()
+
+
+
+
+
+</script>
+</html>

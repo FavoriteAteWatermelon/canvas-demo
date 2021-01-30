@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+
+let canvas = document.getElementById("mycanvas")
+    let context = canvas.getContext('2d')
+// context.scale(x, y);
+context.scale(2, 1);
+context.beginPath()
+context.lineWidth=4;
+context.rect(4, 4, 200, 100);
+
+
+context.strokeStyle='red';
+
+
+context.stroke();
+context.beginPath()
+context.arc(100, 100, 50, 0, Math.PI * 2, false);
+context.fillStyle='green';
+context.fill();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+    </script>
+</html>

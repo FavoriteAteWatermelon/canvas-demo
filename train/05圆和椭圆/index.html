@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+  <script src="./index.js">
+
+  </script>
+  <script src="./Ball.js"></script>
+  <script>
+    const canvas = document.getElementById("canvas")
+    const ctx = canvas.getContext("2d")
+    let W = canvas.width = 800
+    let H = canvas.height = 600
+    const ball = new Ball({
+      x: W / 2,
+      y: H / 2,
+      r: 35
+    }).render(ctx)
+    let angle = 0
+    let speed = 0.02
+    let r = 150
+    function move() {
+      window.requestAnimationFrame(move)
+    
+      
+      ctx.clearRect(0,0,W,H)
+      ctx.save()
+      ctx.translate(W / 2, H / 2)
+      ctx.scale(1,0.4)
+      ctx.beginPath()
+      ctx.arc(0,0, r, 0, Math.PI * 2 )
+      
+      ctx.stroke()
+      ctx.restore()
+      
+      // 1.圆
+      ball.x = W / 2 + r * Math.cos(angle)
+      ball.y = H / 2 + r * Math.sin(angle) * 0.4
+      angle += speed
+      angle %= Math.PI * 2
+      // 2.椭圆
+
+      ball.render(ctx)
+
+    }
+    move()
+    // let iniScale = 1
+    // let SWING = 0.5
+    // let vx = 1
+    // let SWING = 60
+    // function move() {
+    //   window.requestAnimationFrame(move)
+    //   ctx.clearRect(0,0,W,H)
+    //   ball.scaleX = ball.scaleY = iniScale + Math.sin(angle) 
+    //   // console.log(angle)
+    //   // ball.x += vx
+    //   // ball.y = H / 2 + Math.sin(angle) * SWING
+    //   angle += 0.03
+    //   // 取余的思想与三角变换的思想想对应，对100 /3 取余数，余数肯 不会大于3，就算这个数字一直增加
+    //   angle %= Math.PI * 2
+    //   // console.log(angle)
+    //   ball.render(ctx)
+    // }
+    // move()
+  </script>
+</html>

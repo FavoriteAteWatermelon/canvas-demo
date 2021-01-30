@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+
+// 金额万元
+let = saleData = [
+  {month:1 , money: 46},
+  {month:2 , money: 36},
+  {month:3, money: 22},
+  {month:4 , money: 58},
+  {month:5 , money: 12},
+  {month:6 , money: 88},
+  {month:7 , money: 15},
+  {month:8 , money: 77},
+  {month:9 , money: 78},
+  {month:10 , money: 80},
+  {month:11 , money: 12},
+  {month:12 , money: 100},
+]
+let canvas = document.getElementById("mycanvas")
+    let context = canvas.getContext('2d')
+
+let origin = {
+  x: 50,
+  y: canvas.height - 50
+}
+// 画x轴 500
+
+
+
+context.beginPath();
+context.moveTo(origin.x, origin.y)
+context.lineTo(origin.x + 500,  origin.y);
+context.strokeStyle='black';
+context.stroke();
+
+// 画y轴 300
+context.beginPath();
+context.moveTo(origin.x, origin.y)
+context.lineTo(origin.x,  origin.y - 300);
+context.strokeStyle='black';
+context.stroke();
+
+
+// x轴xAxios
+// 得到每个坐标的宽度
+let xUnit = 500  / 12
+for(let i = 0; i < 12; i++) {
+  context.beginPath();
+  context.moveTo(origin.x + (i + 1) * xUnit, origin.y)
+  context.lineTo(origin.x + (i + 1) * xUnit,  origin.y - 10);
+  context.strokeStyle='black';
+  context.stroke();
+}
+let yUnit = 300 / 10
+
+for (let i = 0; i < 10; i++) {
+  context.beginPath();
+  context.moveTo(origin.x, origin.y - (i + 1) * yUnit)
+  context.lineTo(origin.x + 10, origin.y - (i + 1) * yUnit);
+  context.strokeStyle='black';
+  context.stroke();  
+}
+
+// 画连接线。且要被下面的圆挡住，所以还是要在他前面画
+context.beginPath()
+for (let i = 0; i < saleData.length; i++) {
+  let item = saleData[i]
+  if (i === 0) {
+    context.moveTo(origin.x + (i + 1) * xUnit, origin.y - (300 / 100) * item.money)
+  } else {
+    context.lineTo(origin.x + (i + 1) * xUnit, origin.y - (300 / 100) * item.money)
+  }
+}
+context.strokeStyle = 'green'
+context.stroke()
+
+// 画点
+for (let i = 0; i < saleData.length; i++) {
+  let item = saleData[i]
+  context.beginPath()
+  context.arc(origin.x + (i + 1) * xUnit, origin.y - (300 / 100) * item.money, 4, 0, Math.PI * 2)
+  context.fillStyle='red';
+  context.fill();
+  
+  
+  
+
+}
+//  y 轴yAxios
+// context.lineTo(30, 200)
+// context.strokeStyle='red';
+// context.lineJoin='round';
+// context.lineJoin='bevel';
+// context.lineJoin='miter';
+// context.lineWidth=20;
+// context.stroke();
+
+
+
+
+
+
+
+
+
+
+
+   
+    </script>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="canvas"></canvas>
+</body>
+  <script src="./index.js">
+  </script>
+  <script src="./Ball.js">
+  </script>
+  <script>
+    const canvas = document.getElementById("canvas")
+    const ctx = canvas.getContext('2d')
+    let W = canvas.width = 800
+    let H = canvas.height = 600
+    let vx = 0, ax = 0.1
+    const ball = new Ball({
+      x: 50,
+      y: H / 2,
+      r: 10
+    }).render(ctx)
+    let g = 0.2,vy = 0;
+    // let speed = 2 , angle = 30  * Math.PI / 180
+    // 想得到固定方向的speed 2,需要分解速度
+    // let vx=  0.5
+    // let vy = 0.5
+    function move () {
+      window.requestAnimationFrame(move)
+      ctx.clearRect(0,0,W,H)
+      ball.y += vy
+      vy += g
+
+      tempV = vy 
+     
+      if (ball.y + ball.r >= H) {
+        ball.y = H - ball.r
+        vy *= -0.8
+      }
+      tempV2 = vy
+      // if (Math.abs(tempV+ tempV2) < 0.2) {
+      //   return
+      // }
+      // console.log(vy)
+      // if ()
+
+      ball.render(ctx)
+
+    }
+    move()
+  </script>
+</html>

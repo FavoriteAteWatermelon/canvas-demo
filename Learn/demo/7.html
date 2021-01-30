@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <canvas id="mycanvas" width="900" height="500"></canvas>
+</body>
+<script>
+
+let canvas = document.getElementById("mycanvas")
+let context = canvas.getContext('2d')
+let width = canvas.width , height = canvas.height
+let origin = {
+  x: width / 2,
+  y: height /2 
+}
+context.beginPath();
+// context.arc(origin.x, origin.y,  //圆心的坐标
+// 100, //半径
+// //  a2r(30), //起始弧度 = 30角度
+// //   a2r(80), //结束弧度 = 80角度
+//  a2r(0), //起始弧度 = 30角度
+//   a2r(180), //结束弧度 = 80角度
+//    false); //anticlockwise  是否是逆时针
+
+// context.strokeStyle='blue';
+// context.stroke();
+// fill 填充是首尾相连，然后填充内部
+// context.fillStyle='red';
+// context.fill();
+// ?如何填充一个扇形 1.移动画笔到圆心，再填充就可以了
+context.moveTo(origin.x,origin.y) //增加一步移动到圆心
+context.arc(origin.x, origin.y,  //圆心的坐标
+100, //半径
+//  a2r(30), //起始弧度 = 30角度
+//   a2r(80), //结束弧度 = 80角度
+ a2r(0), //起始弧度 = 30角度
+  a2r(30), //结束弧度 = 80角度
+   false); //anticlockwise  是否是逆时针
+   context.closePath();
+context.lineWidth=4;
+// 增加二步需要闭合这个路径，不然少一个线
+
+context.strokeStyle='blue';
+context.stroke();
+// fill 填充是首尾相连，然后填充内部
+context.fillStyle='red';
+context.fill();
+// 角度转换弧度
+
+
+function a2r (angle) {
+  return Math.PI / 180 * angle
+}
+
+// 弧度转角度
+function r2a (radian) {
+  return 180 / Math.PI * radian
+}
+
+
+
+
+
+   
+    </script>
+</html>
